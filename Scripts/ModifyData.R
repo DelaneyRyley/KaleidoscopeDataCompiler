@@ -9,6 +9,8 @@ library(tidyverse)
 #base_path <- "C:/Users/user/Desktop/Bat Data/Bat Data/BatData"
 
 
+
+
 # Load in Translations ----------------------------------------------------
 
   # Read in all the species translations csv
@@ -17,9 +19,25 @@ library(tidyverse)
 
 
 # Load and Modify Data ---------------------------------------------------------------
+
+  # Add all .csv files from Data folder into a single object
+  csv_files <- list.files("Data", pattern = "\\.csv$", full.names = TRUE)
+  
+  # Remove the from the object the our Species Translations
+  csv_files <- csv_files[!grepl("Species_Translations\\.csv$", csv_files)]
+  
+  # Create a list of all the variables we want to keep.
+  dat_var_keep <- c("Year", "Fmin", "Fmean", "Fmax", "TIME", "HOUR", "Manual.ID", "Main.Habitat")
   
   # Load in the Stradbroke data
-  dat <- read.csv("Data/All Stradbroke.csv", na.strings = c("")) %>% 
+  # From the csv_files object
+  dat <- csv_files %>% 
+    # dat
+    dat[, dat_var_keep]
+    # Read in all data csv's with names from the csv_files object, which now contains 4 data frames.
+    lapply(read.csv, na.strings = c("")) %>% 
+    # Combine them into the same number of rows.
+    bind_rows()
     # Rename the MANUAL ID column to Manual ID
     rename(Manual.ID = MANUAL.ID) %>% 
     mutate(
@@ -31,15 +49,13 @@ library(tidyverse)
       Main.Habitat = ifelse(Main.Habitat == "wet heathland", "Wet Heathland", Main.Habitat)
            )
   
-  
-  # Create a list of all the variables we want to keep.
-  dat_var_keep <- c("Year", "Fmin", "Fmean", "Fmax", "TIME", "HOUR", "Manual.ID", "Main.Habitat")
-  
+  #################
   # Don't know what I'm going to do with the time scales, might exclude from the model at this time.
-  # Or ask ChatGPT how to add them together.
+  # Or ask  how to add them together.
+  ########################
 
   # Modify the data so that only the columns with our "keep" variables remain.
-  dat <- dat[, dat_var_keep] %>% 
+  dat <-  %>% 
     # Use separate_rows() to split rows where " and " is found
     separate_rows(Manual.ID, sep = "(?i) and |,") %>%
     # Retain all resulting rows without filtering anything out
