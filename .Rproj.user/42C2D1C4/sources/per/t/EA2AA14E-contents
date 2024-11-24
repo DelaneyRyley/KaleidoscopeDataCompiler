@@ -6,12 +6,14 @@ library(data.table)
 library(tidyverse)
 
 # Assign the base path
-#base_path <- "C:/Users/user/Desktop/Bat Data/Bat Data/BatData"
+base_path <- "C:/Users/user/Desktop/Bat Data/Bat Data/BatData"
 
 
 # Load in Translations ----------------------------------------------------
 
-  # Read in all the species translations csv
+  # Read in all the translations csv
+ # translations <- fread(file.path(base_path, "Data", "Species_Translations.csv")) %>%
+    # Change all characters to factors.
   translations <- colnames(read_csv("Data/Species_Translations.csv") %>% 
     mutate_if(is.character, factor))
 
