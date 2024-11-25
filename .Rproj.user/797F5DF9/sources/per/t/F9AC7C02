@@ -3,7 +3,7 @@
     "path": "C:/Users/Ryley/Desktop/Oakleigh Project/BatData/Scripts/ModifyData.R",
     "project_path": "Scripts/ModifyData.R",
     "type": "r_source",
-    "hash": "540893979",
+    "hash": "4071462592",
     "contents": "",
     "dirty": false,
     "created": 1732430683772.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "34,9",
-        "scrollLine": "18"
+        "cursorPosition": "56,78",
+        "scrollLine": "30"
     },
     "folds": "",
-    "lastKnownWriteTime": 1732484901,
+    "lastKnownWriteTime": 1732578944,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1732484901271,
+    "last_content_update": 1732578944678,
     "read_only": false,
     "read_only_alternatives": []
 }

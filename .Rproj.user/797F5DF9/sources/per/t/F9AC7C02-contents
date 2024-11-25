@@ -27,17 +27,18 @@ library(tidyverse)
   csv_files <- csv_files[!grepl("Species_Translations\\.csv$", csv_files)]
   
   # Create a list of all the variables we want to keep.
-  dat_var_keep <- c("Year", "Fmin", "Fmean", "Fmax", "TIME", "HOUR", "Manual.ID", "Main.Habitat")
+  dat_var_keep <- c("Year", "Fmin", "Fmean", "Fmax", "TIME", "HOUR", "MANUAL.ID", "Main.Habitat")
   
-  # Load in the Stradbroke data
-  # From the csv_files object
-  dat <- csv_files %>% 
-    # dat
-    dat[, dat_var_keep]
-    # Read in all data csv's with names from the csv_files object, which now contains 4 data frames.
-    lapply(read.csv, na.strings = c("")) %>% 
-    # Combine them into the same number of rows.
-    bind_rows()
+  # Load in the Stradbroke data, to a large list DF
+  dat <- lapply(csv_files, read.csv, na.strings = c(""))
+  # Remove all rows that don't belong to dat_var_keep
+  dat <- lapply(dat, function(df) df[, dat_var_keep, drop = FALSE])
+  
+  
+    # Read in all data CSV's with names from the csv_files object, which now contains 4 data frames.
+     dat <- dat %>% 
+    # Combine them into one data frame
+    bind_rows() %>% 
     # Rename the MANUAL ID column to Manual ID
     rename(Manual.ID = MANUAL.ID) %>% 
     mutate(
@@ -48,14 +49,24 @@ library(tidyverse)
       # Change the name of Wet Heathland
       Main.Habitat = ifelse(Main.Habitat == "wet heathland", "Wet Heathland", Main.Habitat)
            )
-  
-  #################
-  # Don't know what I'm going to do with the time scales, might exclude from the model at this time.
-  # Or ask  how to add them together.
+     dat2 <- dat
+     dat2$TIME <- sub("\\.\\d+$", "", dat2$TIME) 
+     dat2$TIME <- sub("(AM|PM)", "", dat2$TIME)
+     
+     ###############################
+     # if the nchar() of dat$TIME is > 5, then trim to only the last 5 digits.
+     ##############
+     
+    #########################
+     # Check the length of the TIME variable and if greater than give (e.g.2:42:31), then trim off the 2:
+     #########
+     
+     
+  ########################
+  # Find a way to add the timescales together
   ########################
 
   # Modify the data so that only the columns with our "keep" variables remain.
-  dat <-  %>% 
     # Use separate_rows() to split rows where " and " is found
     separate_rows(Manual.ID, sep = "(?i) and |,") %>%
     # Retain all resulting rows without filtering anything out
