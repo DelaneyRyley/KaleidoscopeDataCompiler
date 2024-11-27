@@ -1,26 +1,28 @@
 {
-    "id": "EA2AA14E",
+    "id": "C7A39743",
     "path": "C:/Users/user/Desktop/Bat Data/Bat Data/BatData/Scripts/ModifyData.R",
     "project_path": "Scripts/ModifyData.R",
     "type": "r_source",
-    "hash": "2560366045",
+    "hash": "1877005948",
     "contents": "",
     "dirty": false,
-    "created": 1732183200444.0,
+    "created": 1732493830759.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "88,53",
-        "scrollLine": "76"
+        "cursorPosition": "107,51",
+        "scrollLine": "91",
+        "docOutlineVisible": "0",
+        "docOutlineSize": "160"
     },
-    "folds": "",
-    "lastKnownWriteTime": 1732334214,
+    "folds": "1|40|12|0|\n13|23|19|0|\n",
+    "lastKnownWriteTime": 1732690889,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1732334214508,
+    "last_content_update": 1732690890005,
     "read_only": false,
     "read_only_alternatives": []
 }
