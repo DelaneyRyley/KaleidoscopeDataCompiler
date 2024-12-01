@@ -18,7 +18,7 @@ library(tidyverse)
     mutate_if(is.character, factor))
 
 
-# Load and Modify Data ---------------------------------------------------------------
+# Load in Data ---------------------------------------------------------------
 
   # Add all .csv files from Data folder into a single object
   csv_files <- list.files("Data", pattern = "\\.csv$", full.names = TRUE)
@@ -49,71 +49,95 @@ library(tidyverse)
       # Change the name of Wet Heathland
       Main.Habitat = ifelse(Main.Habitat == "wet heathland", "Wet Heathland", Main.Habitat)
            )
-     dat2 <- dat
-     dat2$TIME <- sub("\\.\\d+$", "", dat2$TIME) 
-     dat2$TIME <- sub("(AM|PM)", "", dat2$TIME)
      
-     ###############################
-     # if the nchar() of dat$TIME is > 5, then trim to only the last 5 digits.
-     ##############
-     
-    #########################
-     # Check the length of the TIME variable and if greater than give (e.g.2:42:31), then trim off the 2:
-     #########
-     
-     
-  ########################
-  # Find a way to add the timescales together
-  ########################
+# Clean up the Time Column ----
+     # Remove AM/PM, milliseconds and instances where the hour is included in the TIME column.
+     dat <- dat %>% 
+       mutate(
+         TIME = trimws(
+           # Removes the AM or PM (case insensitive) suffixes from the end of the string.
+           # Including AM or PM cases that have one or zero spaces before it "\\s?"
+           # Also trims the white spaces
+           sub("\\s?(AM|PM)+$", "", TIME, ignore.case = TRUE)
+         ),
+         # Within the TIME column
+         # trim the milliseconds from the TIME data.
+         TIME = sub("\\.\\d+$", "", TIME) 
+       )
 
-  # Modify the data so that only the columns with our "keep" variables remain.
-    # Use separate_rows() to split rows where " and " is found
-    separate_rows(Manual.ID, sep = "(?i) and |,") %>%
-    # Retain all resulting rows without filtering anything out
-    mutate(Manual.ID = str_trim(Manual.ID))  # Clean up any extra spaces
+     # Remove the hours so that all time is presented in minutes and seconds.
+     # For each row in dat
+     for (i in 1:nrow(dat)) {
+       # If the length of the string is more than 5 chars.
+       if (nchar(dat$TIME[i]) > 5) {
+         # Substring to the last 5 characters. (Minutes and seconds)
+         dat$TIME[i] <- substr(
+           dat$TIME[i],
+           (nchar(dat$TIME[i]) - 4),
+           nchar(dat$TIME[i])
+         )
+       }
+     }
+     # Add time hours and minutes together
+     dat <- dat %>% 
+       mutate(pass_time = paste0(dat$HOUR,":", dat$TIME)) %>% 
+     # Use separate_rows() to split rows where " and " is found
+     separate_rows(Manual.ID, sep = "(?i) and |,") %>%
+       # Retain all resulting rows without filtering anything out
+       mutate(Manual.ID = str_trim(Manual.ID))  # Clean up any extra spaces
   
   
   
 
-# Rename Misspells to Species Name -----------------------------------------
+# Rename Misspells to Species Name based on Translation List -------------------
 
   # For each Unique value in the dataset
   for (i in 1:3) {cat("\n)")}
-  for (i in unique(dat$Manual.ID)) {
-    # Check if name already equals anything in our translations list.
-    if (!(i %in% translations))
-    {
-      # Check if you want to change the variable. 
-      cut <- menu(choices = c("Yes","No","Quit"), title = paste("Do you want to rename:",i,"?"))
-      if (cut == 1)
-      {
-        print(paste("Rename:", i))
-        paste_name <- translations[menu(choices = translations, title = paste("What should:", i, "be changed to?"))]
-        dat <- dat %>% 
-          mutate(Manual.ID = ifelse(Manual.ID == i, paste_name, Manual.ID))
-        print(paste("Renamed", i, "to", paste_name))
-      }
-      # If answered no.
-      else if (cut == 2)
-      {
-        # Change nothing and print that the value wasn't changed
-        print(paste("Not renaming value:", i))
-      }
-      # If Answered Quit
-      else if (cut == 3)
-      {
-        # Print that you're exiting the function.
-        print("Quitting Program")
-        break
-      }
-    }
+     for (i in unique(dat$Manual.ID)) {
+       # Check if name already equals anything in our translations list.
+       if (!(i %in% translations))
+       {
+         # Check if you want to change the variable. 
+         cut <- menu(choices = c("Yes","No","Quit"), title = paste("Do you want to rename:",i,"?"))
+         if (cut == 1)
+         {
+           print(paste("Rename:", i))
+           paste_name <- translations[menu(choices = c(translations, "Cancel"), title = paste("What should:", i, "be changed to?"))]
+           # Checks to see if the user doesn't want to rename the bat.
+           if (is.na(paste_name)){
+             print(paste(i, "has been left as", i))
+           }
+           else if (is.na(i)) {
+             dat <- dat %>% 
+               mutate(Manual.ID = ifelse(is.na(Manual.ID), paste_name, Manual.ID))
+           }
+           else {
+             dat <- dat %>% 
+               mutate(Manual.ID = ifelse(!is.na(Manual.ID) & Manual.ID == i, paste_name, Manual.ID))
+             print(paste("Renamed", i, "to", paste_name))
+           }
+         }
+         # If answered no.
+         else if (cut == 2)
+         {
+           # Change nothing and print that the value wasn't changed
+           print(paste(i, " has been left as ", i))
+         }
+         # If Answered Quit
+         else if (cut == 3)
+         {
+           # Print that you're exiting the function.
+           print("Quitting Program")
+           break
+         }
+       }
   }
 
-# Write data to CSV -------------------------------------------------------
+# Write data to CSV ------------------------------------------------------------
 
   # Write data including Column Titles
   menu(choices = "Ok", title = "Please close any open CSV files to \n ensure R outputs without error.")
   print("Modified Data Produced, Check Outputs folder")
-  write_csv(dat, "Outputs/Modified_Stradbroke_Data.csv", col_names = TRUE)
+  write_csv(dat, "Outputs/Bat_Accoustic_Recorder_Data.csv", col_names = TRUE)
 
   
