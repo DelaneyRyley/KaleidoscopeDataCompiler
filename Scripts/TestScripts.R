@@ -40,4 +40,16 @@
  )
  
  df <- test_df %>% group_by(Name)
+ 
+ 
+
+# Search a dataframe for a specific value and return the column na --------
+
+ df <- data.frame(A = c(1, 2, 3), B = c(4, 5, 3), C = c(6, 7, 8))
   
+ # A function that searches each column for a value in a data frame and returns the name of the column that value is in.
+ get_Col_Name <- function(data, search) {
+   column_name <- names(data)[sapply(data, function(col) any(col == search))]
+   return(column_name)
+ }
+get_Col_Name(df, 2) 
