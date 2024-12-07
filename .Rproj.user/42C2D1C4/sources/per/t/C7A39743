@@ -3,7 +3,7 @@
     "path": "C:/Users/user/Desktop/Bat Data/Bat Data/BatData/Scripts/ModifyData.R",
     "project_path": "Scripts/ModifyData.R",
     "type": "r_source",
-    "hash": "1877005948",
+    "hash": "4254560094",
     "contents": "",
     "dirty": false,
     "created": 1732493830759.0,
@@ -12,17 +12,17 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "107,51",
-        "scrollLine": "91",
+        "cursorPosition": "48,17",
+        "scrollLine": "23",
         "docOutlineVisible": "0",
         "docOutlineSize": "160"
     },
-    "folds": "1|40|12|0|\n13|23|19|0|\n",
-    "lastKnownWriteTime": 1732690889,
+    "folds": "",
+    "lastKnownWriteTime": 1733559315,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1732690890005,
+    "last_content_update": 1733562630890,
     "read_only": false,
     "read_only_alternatives": []
 }
