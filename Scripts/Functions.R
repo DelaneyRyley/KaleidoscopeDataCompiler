@@ -26,27 +26,9 @@ get_Col_Name <- function(data, search) {
 
 # Add guilds to dataframe based on species
 add_Guilds <- function(dat) {
-  # Ensure Manual.ID in dat and species IDs in guilds are of the same type (e.g., character)
   dat$Manual.ID <- as.character(dat$Manual.ID)
-  guilds[] <- lapply(guilds, as.character)
-  
-  # Initialize the Guild column as NA
-  dat$Guild <- NA
-  
-  # For each row in the dat dataframe
-  for (i in 1:nrow(dat)) {
-    # If the ID isn't NA
-    if (!is.na(dat[i, "Manual.ID"])) {
-      
-      # Compare directly if the Manual.ID is present in any of the guilds' species IDs
-      matched_guild <- sapply(guilds, function(col) any(col == dat[i, "Manual.ID"]))
-      
-      # If a match is found (TRUE), assign the corresponding guild name (column name)
-      if (any(matched_guild)) {
-        dat$Guild[i] <- names(guilds)[matched_guild][1]  # Take the first match if multiple
-      }
-    }
-  }
+  dat <- dat %>% 
+    left_join(guilds, by = c("Manual.ID" = "Complexes"))
   
   return(dat)
 }
@@ -69,27 +51,28 @@ translate_Data <- function(dat) {
       if (cut == 1)
       {
         print(paste("Rename:", i))
-        paste_name <- translations[menu(
+        paste_index <- menu(
           choices = c(translations, "Cancel"),
           title = paste("What should:", i, "be changed to?")
-        )]
-        print(paste_name)
+        )
+        print(paste_index)
+        print(translations[paste_index])
         # Checks to see if the user doesn't want to rename the bat.
-        if (is.null(paste_name)) { # If cancel is selected.
+        if (paste_index == length(translations) + 1) { # If cancel is selected.
           print(paste(i, "has been left as", i))
         }
         else if (is.na(i)) {
           dat <- dat %>%
-            mutate(Manual.ID = ifelse(is.na(Manual.ID), paste_name, Manual.ID))
+            mutate(Manual.ID = ifelse(is.na(Manual.ID), translations[paste_index], Manual.ID))
         }
         else {
           dat <- dat %>%
             mutate(Manual.ID = ifelse(
               !is.na(Manual.ID) & Manual.ID == i,
-              paste_name,
+              translations[paste_index],
               Manual.ID
             ))
-          print(paste("Renamed", i, "to", paste_name))
+          print(paste("Renamed", i, "to", translations[paste_index]))
         }
       }
       # If answered no.
