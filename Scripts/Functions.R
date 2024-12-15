@@ -55,8 +55,6 @@ translate_Data <- function(dat) {
           choices = c(translations, "Cancel"),
           title = paste("What should:", i, "be changed to?")
         )
-        print(paste_index)
-        print(translations[paste_index])
         # Checks to see if the user doesn't want to rename the bat.
         if (paste_index == length(translations) + 1) { # If cancel is selected.
           print(paste(i, "has been left as", i))
