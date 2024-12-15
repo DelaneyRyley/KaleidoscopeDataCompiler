@@ -1,39 +1,40 @@
 Year,Fmin,Fmean,Fmax,Manual.ID,Main.Habitat,pass_time,Guilds
-2023,38402.031,39067.719,40086.441,Ozimops ridei,Peat Swamp,18:33:25,Open
-2023,38846.02,40458.719,46313.746,Austronomus australis,Peat Swamp,18:27:40,Open
-2023,38654.039,39736.027,42603.258,Nyctophilus sp,Peat Swamp,18:31:59,Clutter
-2024,43204.55,40000.05,42666.25,Ozimops lumsdenae,Urban,18:40:06,Open
-2024,43204.55,40000.05,42666.25,Miniopterus australis,Urban,18:40:06,Edge
-2023,34144.305,35101.711,37318.621,35khz,Peat Swamp,18:33:32,Edge
-2023,34144.305,35101.711,37318.621,38khz,Peat Swamp,18:33:32,Edge
-2023,39698.879,40574.574,43022.492,Ozimops lumsdenae,Peat Swamp,18:34:27,Open
-2023,38716.445,39157.836,40274.859,Miniopterus australis,Peat Swamp,18:34:30,Edge
-2023,38109.062,38386.188,38748.922,35khz,Peat Swamp,18:32:54,Edge
-2023,38419.746,39588.582,43270.996,35khz,Peat Swamp,18:32:21,Edge
-2023,38322.645,38772.641,39577.23,Vespadelus sp,Peat Swamp,18:32:28,Edge
-2023,37622.051,38403.672,40059.121,Rhinolophus megaphyllus,Peat Swamp,18:33:53,Clutter
-2023,38423.633,40127.48,46220.621,Miniopterus orianae,Peat Swamp,18:33:55,Edge
-2023,38147.879,38685.828,39683.371,Chalinolobus morio,Peat Swamp,18:33:58,Edge
-2023,38246.535,38756.895,39645.738,38khz,Peat Swamp,18:34:01,Edge
-2023,37485.062,38690.402,42695.043,Saccolaimus flaviventris,Peat Swamp,18:34:14,Open
-2023,37697.34,38782.883,41130.906,Noise,Peat Swamp,18:34:20,NA
-2023,39217.57,40080.148,42159.699,Myotis macropus,Peat Swamp,18:34:23,Trawling
-2023,37744.25,38510.5,41054.633,Unidentified call,Peat Swamp,18:34:24,NA
-2023,37145.926,38009.754,39911.855,Ozimops ridei,Peat Swamp,18:34:24,Open
-2023,38424.227,39511.109,42529.434,Noise,Peat Swamp,18:34:35,NA
-2023,38947.781,39582.715,40718.801,Ozimops ridei,Peat Swamp,18:34:37,Open
-2023,38523.785,39978.938,44100.348,Austronomus australis,Peat Swamp,18:34:57,Open
-2023,36410.531,37342.102,39298.625,Nyctophilus sp,Peat Swamp,18:34:58,Clutter
-2023,31872.213,33355.84,38321.648,Ozimops lumsdenae,Peat Swamp,18:34:45,Open
-2023,37602.648,38521.066,41025.039,Miniopterus australis,Peat Swamp,18:34:53,Edge
-2023,36878.516,37472.664,38312.586,35khz,Peat Swamp,18:36:13,Edge
-2023,37643.039,38655.422,41584.199,38khz,Peat Swamp,18:35:03,Edge
-2023,36281.734,36575.438,37567.867,Vespadelus sp,Peat Swamp,18:36:15,Edge
-2023,36343.145,37827.285,42294.586,Rhinolophus megaphyllus,Peat Swamp,18:35:06,Clutter
-2023,38893.27,40312.551,45016.855,Miniopterus orianae,Peat Swamp,18:35:31,Edge
-2023,38970.898,39760.938,41729.672,Chalinolobus morio,Peat Swamp,18:35:35,Edge
-2023,38783.52,40494.105,43816.406,Chalinolobus gouldi,Peat Swamp,18:36:25,Edge
-2023,38010.617,39346.391,44403.75,Saccolaimus flaviventris,Peat Swamp,18:35:20,Open
-2023,37454.172,37972.512,38987.773,Myotis macropus,Peat Swamp,18:35:59,Trawling
-2023,39143.324,39924.797,41722.637,Unidentified call,Peat Swamp,18:36:03,NA
-2023,36349.156,37203.875,38837.215,Blank,Peat Swamp,18:36:05,NA
+200,1,50,100,Ozimops R,Peat Swamp,1:33:25,NA
+201,2,51,101,White Stripe,Peat Swamp,2:27:40,NA
+202,3,52,102,Nycto,Peat Swamp,3:31:59,NA
+203,4,53,103,Ozimops Lums,Urban,4:40:06,NA
+203,4,53,103,miniop,Urban,4:40:06,NA
+204,5,54,104,Scot,Peat Swamp,5:33:32,NA
+204,5,54,104,Goulds,Peat Swamp,5:33:32,NA
+205,6,55,105,Ozimops Lums,Peat Swamp,6:34:27,NA
+206,7,56,106,Minop,Peat Swamp,7:34:30,NA
+207,8,57,107,35,Peat Swamp,8:32:54,NA
+208,9,58,108,38,Peat Swamp,9:32:54,NA
+209,10,59,109,Scot,Peat Swamp,10:32:21,NA
+210,11,60,110,vesp,Peat Swamp,11:32:28,NA
+211,12,61,111,Rhinolophus,Peat Swamp,12:33:53,NA
+212,13,62,112,Miniopterus oriana,Peat Swamp,13:33:55,NA
+213,14,63,113,Chocolate,Peat Swamp,14:33:58,NA
+214,15,64,114,Goulds,Peat Swamp,15:34:01,NA
+215,16,65,115,sacco,Peat Swamp,16:34:14,NA
+216,17,66,116,Noise,Peat Swamp,17:34:20,NA
+217,18,67,117,Myotis,Peat Swamp,18:34:23,NA
+218,19,68,118,Social,Peat Swamp,19:34:24,NA
+219,20,69,119,Ozimops Ridei,Peat Swamp,20:34:24,NA
+220,21,70,120,NA,Peat Swamp,21:34:35,NA
+221,22,71,121,Ozimops ridei,Peat Swamp,22:34:37,Open
+222,23,72,122,Austronomus australis,Peat Swamp,23:34:57,Open
+223,24,73,123,Nyctophilus sp,Peat Swamp,24:34:58,Clutter
+224,25,74,124,Ozimops lumsdenae,Peat Swamp,25:34:45,Open
+225,26,75,125,Miniopterus australis,Peat Swamp,26:34:53,Edge
+226,27,76,126,35khz,Peat Swamp,27:36:13,Edge
+227,28,77,127,38khz,Peat Swamp,28:35:03,Edge
+228,29,78,128,Vespadelus sp,Peat Swamp,29:36:15,Edge
+229,30,79,129,Rhinolophus megaphyllus,Peat Swamp,30:35:06,Clutter
+230,31,80,130,Miniopterus orianae,Peat Swamp,31:35:31,Edge
+231,32,81,131,Chalinolobus morio,Peat Swamp,32:35:35,Edge
+232,33,82,132,Chalinolobus gouldi,Peat Swamp,33:36:25,Edge
+233,34,83,133,Saccolaimus flaviventris,Peat Swamp,34:35:20,Open
+234,35,84,134,Myotis macropus,Peat Swamp,35:35:59,Trawling
+235,36,85,41722.637,Unidentified call,Peat Swamp,36:36:03,NA
+236,37,86,38837.215,Blank,Peat Swamp,37:36:05,NA

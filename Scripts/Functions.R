@@ -73,8 +73,9 @@ translate_Data <- function(dat) {
           choices = c(translations, "Cancel"),
           title = paste("What should:", i, "be changed to?")
         )]
+        print(paste_name)
         # Checks to see if the user doesn't want to rename the bat.
-        if (is.na(paste_name)) {
+        if (is.null(paste_name)) { # If cancel is selected.
           print(paste(i, "has been left as", i))
         }
         else if (is.na(i)) {
@@ -174,7 +175,46 @@ load_Data <- function() {
   csv_files <- csv_files[!grepl("Species_Translations\\.csv$|Guilds\\.csv$", csv_files)]
   
   comb <- list(dat = dat <- lapply(csv_files, read.csv, na.strings = c("")),
-               translations = translations <- colnames(read_csv("Data/Species_Translations.csv")),
+               translations = as.list(translations <- read_csv("Data/Species_Translations.csv")$Translations),
                guilds = guilds <- guilds <- read.csv("Data/Guilds.csv", header = TRUE))
   list2env(comb, envir = .GlobalEnv)
+}
+
+# Creates all the necessary folders based on working directories
+create_Directories <- function(wrkdir = getwd()) # Defaults as working directory if not specified
+{
+  datdirmade <- FALSE
+  # Check if Data folder exists
+  print("Checking if Data folder exists...")
+  if (dir.exists(paste0(wrkdir,"/Data")))
+  {
+    print("Data Folder exists")
+  }
+  else
+  {
+    datdirmade <- TRUE
+    print("Creating Data folder.")
+    dir.create(paste0(wrkdir,"/Data"))
+  }
+  
+  
+  # Check if Outputs folder exists
+  print("Checking if Outputs folder exists...")
+  if (dir.exists(paste0(wrkdir,"/Outputs")))
+  {
+    print("Outputs Folder exists")
+  }
+  else
+  {
+    print("Creating Outputs folder.")
+    dir.create(paste0(wrkdir,"/Outputs"))
+  }
+  
+  # If Data folder made, direct user to place there data in the folder.
+  if (datdirmade == TRUE) 
+  {
+    cat("\n\n")
+    cat("Data folder created, please place .csv's in data folder\n")
+    readline(prompt = "Press ENTER to continue")
+  }
 }
