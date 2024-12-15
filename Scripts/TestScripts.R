@@ -1,4 +1,6 @@
 
+library(tidyverse)
+
 # Sets the variable "selection" to be chosen using a menu
   x <- c("Cat", "Dog", "Mouse")
   selection <- x[menu(x)]
@@ -53,3 +55,35 @@
    return(column_name)
  }
 get_Col_Name(df, 2) 
+
+
+
+# For each row in the dat dataframe
+for (i in 1:nrow(dat)) {
+  # If the ID isn't NA
+  if (!is.na(dat[i, "Manual.ID"])) {
+    
+    # Compare directly if the Manual.ID is present in any of the guilds' species IDs
+    matched_guild <- sapply(guilds, function(col) any(col == dat[i, "Manual.ID"]))
+    
+    # If a match is found (TRUE), assign the corresponding guild name (column name)
+    if (any(matched_guild)) {
+      dat$Guild[i] <- names(guilds)[matched_guild][1]  # Take the first match if multiple
+    }
+  }
+}
+
+
+for (i in 1:nrow(dat)) {
+  # If the ID isn't NA
+  if (!is.na(dat[i, "Manual.ID"])) {
+    
+    # Compare directly if the Manual.ID is present in any of the guilds' species IDs
+    matched_guild <- sapply(dat$Manual.ID, function(col) col %in% guilds$Complexes)
+  }
+}
+
+dat$Guilds <- dat$Manual.ID %in% guilds$Complexes
+
+dat <- dat %>%
+  left_join(guilds, by = c("Manual.ID" = "Complexes"))

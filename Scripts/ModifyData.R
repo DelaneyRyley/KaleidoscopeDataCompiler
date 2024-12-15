@@ -46,7 +46,8 @@ dat <- rework_Time(dat)
 dat <- translate_Data(dat)
 
 # Add Guilds to Dataframe -------------------------------------------------
-dat <- add_Guilds(dat)
+dat <- dat %>%
+  left_join(guilds, by = c("Manual.ID" = "Complexes"))
 
 # Write data to CSV ------------------------------------------------------------
 final_Output(dat, "Outputs/Bat_Accoustic_Recorder_Data.csv")
