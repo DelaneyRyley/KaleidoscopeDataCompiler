@@ -49,7 +49,7 @@ dat <- translate_Data(dat)
 dat <- add_Guilds(dat)
 
 # Write data to CSV ------------------------------------------------------------
-final_Output(dat, "Outputs/Bat_Accoustic_Recorder_Data.csv")
+final_Output(dat, "Outputs/Bat_Acoustic_Recorder_Data.csv")
 
   
 
