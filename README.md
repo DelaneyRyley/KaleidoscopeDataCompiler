@@ -13,7 +13,7 @@ Created by Ryley Delaney February 2025
 ## Overview
 <p>This Repository contains scripts that allow the compilation of several CSV's of data that has been exported from the  <a href=https://www.wildlifeacoustics.com/products/kaleidoscope-pro> Kaleidoscope Pro Analysis Software </a> into a single CSV while simultaneously editing ID's and adding groups/categories. In this example, the data contained common names for local bat species and provided an interactive tool that stepped the user through renaming all common names to scientific names after which it added each bat to a guild.</p>
 
-You can view Robin Rowlands LinkedIn <a href="[https://github.com/OakAlice](https://www.linkedin.com/in/robin-rowland-3b16a3152/?originalSubdomain=au)"> here </a> </p>
+You can view Robin Rowland's LinkedIn <a href="https://www.linkedin.com/in/robin-rowland-3b16a3152/?originalSubdomain=au"> here </a> </p>
 <p> The example report is in HTML format and will need to be downloaded to be viewed properly if attempting to view from GitHub.</p>
 
 <br>
